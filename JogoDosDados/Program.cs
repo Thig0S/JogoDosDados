@@ -4,11 +4,27 @@ class Program
 {
     static void Main(string[] args)
     {
-        const int limiteChegada = 30;
-        const int bonusAvancoExtra = 3;
-        const int penalidadeRecuo = 2;
+        while (true)
+        {
+            IniciarPartida();
 
-        ExecutarPartida(limiteChegada, bonusAvancoExtra, penalidadeRecuo);
+            while (true)
+            {
+                Jogador.ExecutarRodada();
+
+                if (Jogador.Venceu())
+                    break;
+
+                Computador.ExecutarRodada();
+
+                if (Computador.Venceu())
+                    break;
+            }
+            if (!DesejaJogarNovamente())
+            {
+                break;
+            }
+        }
     }
     public static void ExibirMenu(string nome)
     {
@@ -30,39 +46,9 @@ class Program
 
         return true;
     }
-
-    static void ExecutarPartida(int limiteChegada, int bonusAvancoExtra, int penalidadeRecuo)
+    static void IniciarPartida()
     {
-        while (true)
-        {
-            int posicaoJogador = 0;
-            int posicaoComputador = 0;
-
-            while (true)
-            {
-                posicaoJogador = Jogador.ExecutarRodada(posicaoJogador,
-                limiteChegada,
-                bonusAvancoExtra,
-                penalidadeRecuo
-                );
-
-                if (posicaoJogador >= limiteChegada)
-                    break;
-
-                posicaoComputador = Computador.ExecutarRodada(
-                posicaoComputador,
-                limiteChegada,
-                bonusAvancoExtra,
-                penalidadeRecuo);
-
-                if (posicaoComputador >= limiteChegada)
-                    break;
-
-            }
-            if (!DesejaJogarNovamente())
-            {
-                break;
-            }
-        }
+        Jogador.posicaoJogador = 0;
+        Computador.posicaoComputador = 0;
     }
 }

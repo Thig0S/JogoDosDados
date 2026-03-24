@@ -4,10 +4,12 @@ namespace JogoDosDados;
 
 static class Computador
 {
-    public static int ExecutarRodada(int posicaoComputador,
-    int limiteChegada,
-    int bonusAvancoExtra,
-    int penalidadeRecuo)
+    public static int posicaoComputador = 0;
+    const int limiteChegada = 30;
+    const int bonusAvancoExtra = 3;
+    const int penalidadeRecuo = 2;
+
+    public static void ExecutarRodada()
     {
         do
         {
@@ -59,6 +61,10 @@ static class Computador
                 break;
             }
         } while (true);
-        return posicaoComputador;
     }
+    public static bool Venceu()
+    {
+        return posicaoComputador >= limiteChegada;
+    }
+
 }

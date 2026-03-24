@@ -4,12 +4,13 @@ namespace JogoDosDados;
 
 static class Jogador
 {
-    public static int ExecutarRodada(
-        int posicaoJogador,
-         int limiteChegada,
-         int bonusAvancoExtra,
-         int penalidadeRecuo
-         )
+
+    public static int posicaoJogador = 0;
+    const int limiteChegada = 30;
+    const int bonusAvancoExtra = 3;
+    const int penalidadeRecuo = 2;
+
+    public static void ExecutarRodada()
     {
         do
         {
@@ -60,6 +61,10 @@ static class Jogador
                 break;
             }
         } while (true);
-        return posicaoJogador;
+    }
+
+    public static bool Venceu()
+    {
+        return posicaoJogador >= limiteChegada;
     }
 }
